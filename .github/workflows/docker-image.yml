@@ -1,33 +1,20 @@
-name: Node.js Package
+name: Python application
 
 on:
-  release:
-    types: [created]
-
+  push:
+   branches: [ master ]
+  pull_request:
+    branches: [ master ]
+      
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm test
 
-  publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.SECRET_DEVOPS_ELITE}}
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.SECRET_DEVOPS_ELITE }}" | docker login -u "specinatti" --password-stdin
+        docker image build -t ghcr.io/specinatti/conversao-temperatura:latest .
+        docker push ghcr.io/specinatti/conversao-temperatura:latest
