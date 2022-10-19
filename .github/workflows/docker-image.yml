@@ -16,6 +16,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build & Push Image
       run: |
-        echo "${{ secrets.SECRET_DEVOPS_ELITE }}" | docker login -u "specinatti" --password-stdin
+        echo "Lucky@339251" | docker login -u "san26" --password-stdin
         docker image build -t specinatti/conversao-temperatura:v1 .
         docker push specinatti/conversao-temperatura:v1
