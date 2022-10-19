@@ -17,5 +17,5 @@ jobs:
     - name: Build & Push Image
       run: |
         echo "S@n101298" | docker login -u "san26" --password-stdin
-        docker image build -t specinatti/conversao-temperatura:v1 .
-        docker push specinatti/conversao-temperatura:v1
+        docker image build -t san26/conversao-temperatura:v1 .
+        docker push san26/conversao-temperatura:v1
