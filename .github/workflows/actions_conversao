@@ -15,6 +15,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build & Push Image
       run: |
-        echo "${{ secrets.SECRET_DEVOPS_ELITE }}" | docker login -u "specinatti" --password-stdin
+        echo "${{ secrets.SECRET_DEVOPS_ELITE }}" | docker login -u "specinatti" --password-stdin  ghcr.io
         docker image build -t ghcr.io/specinatti/conversao-temperatura:latest .
         docker push ghcr.io/specinatti/conversao-temperatura:latest
