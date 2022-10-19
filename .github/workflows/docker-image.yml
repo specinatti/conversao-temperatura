@@ -10,12 +10,12 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: node:1.18.1
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        echo "${{ secrets.DOCKERPW }}" | docker login -u "specinatti" --password-stdin
+        echo "${{ secrets.SECRET_DEVOPS_ELITE }}" | docker login -u "specinatti" --password-stdin
         docker image build -t specinatti/conversao-temperatura:v1 .
         docker push specinatti/conversao-temperatura:v1
